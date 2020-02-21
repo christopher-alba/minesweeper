@@ -7,7 +7,7 @@ html, body {
 .teemo{
   background:url("https://images4.alphacoders.com/600/thumb-1920-600528.png");
   background-size:cover;
-  padding-bottom:5%;
+  
 }
 
 #message, #notes, #difficulty {
@@ -78,6 +78,7 @@ button:hover{
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto 0 auto;
+  padding-bottom:5%;
 
 }
 
