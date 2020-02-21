@@ -189,7 +189,10 @@ function checkForWin () {
   }
 
   if(mineCount === markedMines && emptyCount === markedEmpty){
-    lib.displayMessage('You win!');
+    lib.displayMessage('You have escaped Teemo\'s minefield. Congratulations!');
+    document.getElementById("win").play();
+    document.removeEventListener("click",checkForWin);
+    document.removeEventListener("contextmenu",checkForWin);
     
   }
   return -1
