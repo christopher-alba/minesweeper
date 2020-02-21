@@ -1,93 +1,80 @@
 document.addEventListener('DOMContentLoaded', startGame)
+var board;
 
-// Define your `board` object here!
- var board = {
-   cells:[
-     {
-      row:0,
-      col:0,
-      isMine:false,
-      hidden:true,
-      surroundingMines:0,
-      isMarked:false
-    
-     },
-     {
-      row:0,
-      col:1,
-      isMine:true,
-      hidden:true,
-      surroundingMines:0,
-      isMarked:false
-     },
-     {
-      row:0,
-      col:2,
-      isMine:false,
-      hidden:true,
-      surroundingMines:0,
-      isMarked:false
-     },
-     {
-      row:1,
-      col:0,
-      isMine:false,
-      hidden:true,
-      surroundingMines:0,
-      isMarked:false
-     },
-     {
-      row:1,
-      col:1,
-      isMine:false,
-      hidden:true,
-      surroundingMines:0,
-      isMarked:false
-     },
-     {
-      row:1,
-      col:2,
-      isMine:false,
-      hidden:true,
-      surroundingMines:0,
-      isMarked:false
-     },
-     {
-      row:2,
-      col:0,
-      isMine:true,
-      hidden:true,
-      surroundingMines:0,
-      isMarked:false
-     },
-     {
-      row:2,
-      col:1,
-      isMine:false,
-      hidden:true,
-      surroundingMines:0,
-      isMarked:false
-     },
-     {
-      row:2,
-      col:2,
-      isMine:true,
-      hidden:true,
-      surroundingMines:0,
-      isMarked:false
-     }
-   ]
- }
+function makeMine(cell){
+  cell.isMine = true;
+}
+function makeMines(size,board){
 
+  let mineCount = size;
+  let cellsCount = 0;
+
+  for(let i = 0; i < size; i++){
+    for(let j = 0; j < size; j++){
+
+      
+
+      if(mineCount > 0){
+
+        let random = Math.floor(Math.random()*10);
+
+        if(random <= 10/size && board.cells[cellsCount].isMine == false){
+          makeMine(board.cells[cellsCount]);
+          mineCount--;
+        }
+
+      }
+      if(i === size - 1 && j === size - 1){
+        if(mineCount > 0){
+        
+          cellsCount = 0;    
+          i = 0;
+          j = 0;
+        }
+      }
+      cellsCount++;
+    }
+  }
+
+}
+function MakeBoard(size){
+
+  this.cells = [];
+  let cellsCount = 0;
+ 
+  
+  
+  for(let i = 0; i < size; i++){
+    for(let j = 0; j < size; j++){
+
+      this.cells[cellsCount] = {
+        row:i,
+        col:j,
+        isMine:false,
+        hidden:true,
+        surroundingMines:0,
+        isMarked:false
+      };
+      cellsCount++;
+    }
+  }
+
+  makeMines(size,this);
+  
+}
 function startGame () {
   // Don't remove this function call: it makes the game work!
+  
+  board = new MakeBoard(6);
+  console.log(board);
+  
+  lib.initBoard();
   for(let i = 0; i < board.cells.length; i++){
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i]);
   }
-  
   document.addEventListener("click",checkForWin);
   document.addEventListener("contextmenu",checkForWin);
-  lib.initBoard();
+  
   
   
 }
