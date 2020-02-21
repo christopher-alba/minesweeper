@@ -86,6 +86,13 @@ function makeMines(size,board){
     
     
   }
+  if(mineCount > 1){
+    document.getElementsByClassName("mushrooms")[0].innerHTML = "<p> There are a total of " + mineCount + " mushrooms. </p>"
+  }
+  else{
+    document.getElementsByClassName("mushrooms")[0].innerHTML = "<p> There is one mushroom. </p>"
+  }
+  
   let cellsCount = 0;
 
   for(let i = 0; i < size; i++){
