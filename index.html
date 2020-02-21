@@ -1,15 +1,70 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Minesweeper</title>
-    <link rel="stylesheet" href="minesweeper.css">
-    <script src="lib/tests.js"></script>
-    <script src="lib/lib.js"></script>
-    <script src="minesweeper.js"></script>
-  </head>
-  <body>
-    <div id="message"></div>
+
+<head>
+  <title>Minesweeper</title>
+  <link rel="stylesheet" href="minesweeper.css">
+  
+</head>
+
+<body>
+  <div class="teemo">
     <div id="notes"></div>
+    
+    <div class="instructions">
+      <div class="instructionsInner">
+        <p>Welcome to my Mushroom Sweeper game. It's basically minesweeper. The goal of the game is to find all the Teemo Mushrooms by right clicking on the squares where you think they are and left clicking on all the areas that contain no mushrooms. At first, whether or not there is a mushroom in the square is hidden. After left clicking a number will apear in the square if there is a mushroom nearby (one block away from the square). If you left click on a square with a mushroom hidden inside it, you die. Good luck and have fun!</p>
+  
+        <p>Also, you can change the board size and difficulty. Just navigate to the bottom of the page.</p>
+        
+        
+      </div>
+    </div>
+    
+   
+    
+    <div id="message"></div>
+    <div id="difficulty"></div>
+   
+    <div class="resetButton">
+      <button class="reset">Reset Game</button>
+    </div>
     <div class="board"></div>
-  </body>
+  </div>
+  
+
+  <div class="radios accent">
+    <div class="radiosInner">
+      <p>Please select your Board Size</p>
+      <input class="radio" type="radio" id="3" name="boardSize" value="3x3">
+      <label for="3">3x3</label><br>
+      <input class="radio" type="radio" id="4" name="boardSize" value="4x4" checked>
+      <label for="4">4x4</label><br>
+      <input class="radio" type="radio" id="5" name="boardSize" value="5x5">
+      <label for="5">5x5</label><br>
+      <input class="radio" type="radio" id="6" name="boardSize" value="6x6">
+      <label for="6">6x6</label><br><br>
+      <p>Please select your difficulty</p>
+      <input class="radio1" type="radio" id="easy" name="difficulty" value="0">
+      <label for="3">Easy</label><br>
+      <input class="radio1" type="radio" id="medium" name="difficulty" value="1" checked>
+      <label for="4">Medium</label><br>
+      <input class="radio1" type="radio" id="hard" name="difficulty" value="2">
+      <label for="5">Hard</label><br>
+      <input class="radio1" type="radio" id="impossible" name="difficulty" value="3">
+      <label for="6">Impossible</label><br><br>
+      <button class="reset">Apply Changes</button>
+    </div>
+    
+  </div>
+  <footer class="accent">
+    <p>Made Partly by Christopher Sy Alba from an existing Enspiral Dev Academy template</p>
+    <p>All artwork used is taken from League of Legends</p>
+  </footer>
+  
+  <script src="lib/tests.js"></script>
+  <script src="lib/lib.js"></script>
+  <script src="minesweeper.js"></script>
+</body>
+
 </html>

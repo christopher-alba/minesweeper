@@ -1,12 +1,91 @@
-document.addEventListener('DOMContentLoaded', startGame)
+document.addEventListener('DOMContentLoaded', startGame);
+
 var board;
 
+//select board size
+let boardSize = 4;
+var boardSizeNew = 4;
+var radioButtons = document.getElementsByClassName("radio");
+
+
+for(let i = 0; i < radioButtons.length; i++){
+  radioButtons[i].addEventListener('change',function(){
+    boardSizeNew = parseInt(this.id, 10);
+    
+  
+  });
+}
+
+//set new board size and difficulty
+for(let i = 0; i < document.getElementsByClassName("reset").length; i++){
+  var resetButton = document.getElementsByClassName("reset")[i];
+  resetButton.addEventListener('click',function(){
+  
+  
+  boardSize = boardSizeNew;
+  boardDifficulty = boardDifficultyNew;
+
+  
+  resetBoard(boardSize);
+
+});
+}
+
+// set board difficulty
+let boardDifficulty = 1;
+let boardDifficultyNew = 1;
+var radioButtons1 = document.getElementsByClassName("radio1");
+
+
+for(let i = 0; i < radioButtons.length; i++){
+  radioButtons1[i].addEventListener('change',function(){
+    boardDifficultyNew = parseInt(this.value, 10);
+    
+    
+  });
+}
+
+function resetBoard(){
+  clearBoard();
+  startGame();
+  
+}
+function clearBoard(){
+  
+  lib.boardDestroy();
+ 
+ 
+}
 function makeMine(cell){
   cell.isMine = true;
 }
+
 function makeMines(size,board){
 
   let mineCount = size;
+  
+  
+  
+  
+  if(boardDifficulty === 0){
+    mineCount = Math.floor(size/2);
+    document.getElementById("difficulty").innerHTML = "<h1>Mushroom Sweeper Easy " + size + "x" + size + " </h1>" ;
+  }
+  else if(boardDifficulty === 1){
+    mineCount = size;
+    document.getElementById("difficulty").innerHTML = "<h1>Mushroom Sweeper Medium " + size + "x" + size + " </h1>" ;
+  }
+  else if(boardDifficulty === 2){
+    mineCount = Math.floor(size*1.5);
+    document.getElementById("difficulty").innerHTML = "<h1>Mushroom Sweeper Hard " + size + "x" + size + " </h1>" ;
+  }
+  else if(boardDifficulty === 3){
+   
+    mineCount = size*2;
+    document.getElementById("difficulty").innerHTML = "<h1>Mushroom Sweeper Impossible " + size + "x" + size + " </h1>" ;
+    
+    
+  }
   let cellsCount = 0;
 
   for(let i = 0; i < size; i++){
@@ -65,8 +144,8 @@ function MakeBoard(size){
 function startGame () {
   // Don't remove this function call: it makes the game work!
   
-  board = new MakeBoard(6);
-  console.log(board);
+  board = new MakeBoard(boardSize);
+  
   
   lib.initBoard();
   for(let i = 0; i < board.cells.length; i++){
@@ -110,7 +189,8 @@ function checkForWin () {
   }
 
   if(mineCount === markedMines && emptyCount === markedEmpty){
-    lib.displayMessage('You win!')
+    lib.displayMessage('You win!');
+    
   }
   return -1
 } 
@@ -135,4 +215,10 @@ function countSurroundingMines (cell) {
   
   return count;
 }
+
+function selectBoardSize(){
+
+
+}
+
 
